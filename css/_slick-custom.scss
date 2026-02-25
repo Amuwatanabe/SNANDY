@@ -1,0 +1,29 @@
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	画像スライダー領域
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+.imageslider-container {
+	margin: 0 auto;
+	// position: relative;
+	padding: 1.5rem 0 2rem;
+}
+
+.imageslider {
+	//ヘッダーがついてこない対策
+	overflow: hidden;
+
+	.image {
+		img {
+			//これでしか隙間が明けれなかった
+			width: 100%;
+			height: auto;
+		}
+	}
+}
+
+.slick-list {
+	margin: 20px -15px -30px -15px;
+}
+
+.slick-slide {
+	margin: 0 15px;
+}

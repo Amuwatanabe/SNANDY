@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+/*CSS統合*/
+@import "_reset.scss";
+@import "_hamburgers.min.scss";
+@import "_slick.scss";
+@import "_slick-theme.scss";
+@import "_slick-custom.scss";
+@import "_animate.min.scss";
+@import "_happy.scss";
+@import "_news.scss";
+
+/*共通設定*/
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	基本
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+
+:root {
+	--v-space: clamp(90px, 9vw, 120px);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #f7f7f7;
+	color: #222;
+	font-family: "Noto Sans JP", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: 1s;
+
+	&:hover {
+		filter: brightness(90%) contrast(120%);
+		opacity: 0.7;
+	}
+}
+
+.common-container {
+	width: min(92%, 1166px);
+	margin: auto;
+	position: relative;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	ヘッダー
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+.header {
+	height: 47px;
+	background-color: #fff;
+	opacity: 0.9;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.header-right {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.site {
+	width: 8rem;
+}
+
+.japan {
+	position: relative;
+	padding: 5px 6px;
+	border: 1px solid #222;
+	color: #222;
+	display: block;
+	font-size: 0.8rem;
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	ナビゲーションボタン
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+.nav-btn {
+	padding: 0;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 25px;
+	height: 100%;
+}
+
+.open .nav-btn {
+	z-index: 110;
+	// color: #fff;
+}
+
+.nav-btn .fa-bars {
+	/* ブラウザのデフォルト設定 */
+	display: revert;
+}
+
+.open .nav-btn .fa-bars {
+	display: none;
+}
+
+.nav-btn .batu {
+	display: none;
+}
+
+.open .nav-btn .batu {
+	display: revert;
+}
+
+/* PC時は必要ないので消しておく */
+// @media (min-width:768px) {
+// 	.nav-btn {
+// 		display: none;
+// 	}
+// }
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after,
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+	background-color: currentColor;
+	width: 30px;
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	ナビゲーションメニュー(スマホ用)
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+// @media(max-width:767px) {
+.nav {
+	font-family: "Montserrat", sans-serif;
+	position: fixed;
+
+	inset: 0 100% 0 -100%;
+	/* nav要素より後ろ */
+	z-index: 100;
+	background-color: rgb(255, 255, 255);
+	opacity: 0.9;
+	/* transformだけにアニメーションが掛るように */
+	transition: transform 0.5s;
+}
+
+/* htmlがopenになっているとき */
+.open .nav {
+	/* 左側に-100%(画面幅分を移動する) */
+	transform: translate(100%, 0);
+}
+
+.nav ul {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	gap: 40px;
+	color: #666;
+}
+
+// }
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	ナビゲーションメニュー(ＰＣ用)
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+// @media (min-width:768px) {
+// 	.nav ul {
+// 		display: flex;
+// 		gap: 40px;
+// 		color: #707070;
+// 	}
+// }
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	メニュー画像領域
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+
+.menu-container {
+	display: grid;
+	// 1fr（同じ幅）を2つ並べる＝2列
+	grid-template-columns: repeat(2, 1fr);
+	// 画像同士の隙間（必要に応じて調整）
+	width: 100%;
+}
+
+.menu-item {
+	// これだけで正方形を維持します
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: 100%;
+		// 画像が歪まないように、枠いっぱいにトリミングして表示
+		object-fit: cover;
+		vertical-align: bottom;
+	}
+}
+
+// PCでは3列にする例
+@media (min-width: 768px) {
+	.menu-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	ニュース領域
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+.news {
+	padding: 10px;
+
+	.news-item {
+		font-size: 1rem;
+		padding: 15px 0;
+		border-bottom: #fff 1px solid;
+	}
+
+	time {
+		display: inline-block;
+		font-size: 0.8rem;
+		padding: 15px 0;
+		color: #666;
+	}
+
+	.btn {
+		display: flex;
+		justify-content: center;
+		margin: 30px;
+		// /* 左右中央 */
+
+		.btn-text {
+			padding: 10px 50px;
+			background-color: #ff4400;
+			border-radius: 100px;
+			font-size: 0.8rem;
+			border: none;
+			color: #fff;
+		}
+	}
+
+}
+
+/* ＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+	フッター領域
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊ */
+.footer {
+	padding: 50px 0 30px 0;
+}
+
+.footer-sns {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	font-size: 20px;
+	margin-bottom: 80px;
+
+	a {
+		//i要素とspan要素をレイアウトするために指定(今回は必要ない)
+		display: grid;
+		//align-itemとjustify-itemsの一括指定
+		place-items: center;
+		width: 36px;
+		aspect-ratio: 1 / 1;
+		background-color: #8f8e8e;
+		color: #f7f7f7;
+		//丸くする
+		clip-path: circle(50%);
+	}
+
+	/*aspect-ratio非対応環境の設定*/
+	@supports not(aspect-ratio:1 / 1) {
+		a {
+			height: 36px;
+		}
+	}
+}
+
+.footer-copy {
+	font-family: "Shadows Into Light", cursive;
+	text-align: center;
+	font-size: 0.8;
+}
